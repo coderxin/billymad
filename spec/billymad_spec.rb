@@ -2,24 +2,24 @@ require 'spec_helper'
 
 describe Billymad do
 
-  describe "defaults" do
-    it 'has billomat id unset' do
+  describe "by default" do
+    it 'billomat id is unset' do
       expect(Billymad.configuration.billomat_id).to be_nil
     end
 
-    it 'has api key unset' do
+    it 'api key is unset' do
       expect(Billymad.configuration.api_key).to be_nil
     end
 
-    it 'has api format as json' do
+    it 'api format is json' do
       expect(Billymad.configuration.api_format).to eq(:json)
     end
 
-    it 'has http requests via SSL' do
+    it 'http requests are made via SSL' do
       expect(Billymad.configuration.secure).to be_true
     end
 
-    it 'has Logger as default logger' do
+    it 'default logger is Logger' do
       expect(Billymad.configuration.logger).to be_instance_of(Logger)
     end
   end
@@ -55,5 +55,4 @@ describe Billymad do
       expect(Billymad.configuration.logger).to eq(FakeLogger.new)
     end
   end
-
 end
