@@ -1,0 +1,12 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+
+notifications:
+  email:
+    recipients:
+      - eisaks.andrejs@gmail.com
+    on_failure: change
+    on_success: never
