@@ -63,6 +63,7 @@ Since Gem is in development, there are few resources (actually ###) covered in t
     - `Billymad::ClientTag`
     - `Billymad::Contact`
   - `Billymad::Article`
+    - `Billymad::ArticleProperty`
     - `Billymad::ArticlePropertyValue`
     - `Billymad::ArticleTag`
   - `Billymad::Invoice`
@@ -154,3 +155,10 @@ For futher details, please check [API documentation](http://www.billomat.com/en/
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+
+MIT
+
+
+
