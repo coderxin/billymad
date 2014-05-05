@@ -12,6 +12,7 @@ module Billymad
     autoload :Proxy,              "billymad/request/proxy"
     autoload :Info,               "billymad/request/info"
     autoload :Base,               "billymad/request/base"
+    autoload :Rest,               "billymad/request/rest"
   end
 
   autoload :Base,                 "billymad/resources/base"
