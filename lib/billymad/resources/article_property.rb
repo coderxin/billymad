@@ -1,5 +1,5 @@
 module Billymad
-  class ArticleProperty < Base
+  class ArticleProperty < Resource::Base
     include Billymad::Operations::General
 
     mandatory_attributes_for :create, attributes: [ :name, :type ]

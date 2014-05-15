@@ -15,8 +15,13 @@ module Billymad
     autoload :Rest,               "billymad/request/rest"
   end
 
-  autoload :Base,                 "billymad/resources/base"
-  autoload :ArgumentValidations,  "billymad/resources/argument_validations"
+  module Resource
+    autoload :Base,               "billymad/resource/base"
+    autoload :Association,        "billymad/resource/association"
+    autoload :Validations,        "billymad/resource/validations"
+    autoload :CollectionProxy,    "billymad/resource/collection_proxy"
+    autoload :Utils,              "billymad/resource/utils"
+  end
 
   autoload :Account,              "billymad/resources/account"
   

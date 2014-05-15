@@ -1,12 +1,12 @@
 require "spec_helper"
 
-describe Billymad::Base do
+describe Billymad::Resource::Base do
 
   it { described_class.should respond_to(:resource_name, :plural_resource_name) }
  
   describe "#set_attributes" do
     let(:resource_object) do 
-      object = Billymad::Base.new
+      object = described_class.new
       object.set_attributes({ name: "John" })
       object
     end
@@ -22,12 +22,12 @@ describe Billymad::Base do
 
   describe "#convert_attributes" do
     it "converts #id to Integer" do
-      object = Billymad::Base.new({ id: "123" })
+      object = described_class.new({ id: "123" })
       expect(object.id).to be_a(Integer)
     end
 
     it "converts #created to Time" do
-      object = Billymad::Base.new({ created: "2007-12-13T12:12:00+01:00" })
+      object = described_class.new({ created: "2007-12-13T12:12:00+01:00" })
       expect(object.created).to be_a(Time)
     end   
   end
@@ -35,11 +35,11 @@ describe Billymad::Base do
   describe "#prepare_results" do
     context "when empty data set" do
       it "returns empty Array" do
-        expect(Billymad::Base.prepare_results([])).to eq([])
+        expect(described_class.prepare_results([])).to eq([])
       end
 
       it "returns nothing" do
-        expect(Billymad::Base.prepare_results({})).to be_nil
+        expect(described_class.prepare_results({})).to be_nil
       end
     end
 
@@ -48,7 +48,7 @@ describe Billymad::Base do
         [ { id: 1, something: 'A' }, { id: 2, something: 'B' } ]
       end
 
-      let(:results) { Billymad::Base.prepare_results(response_set) }
+      let(:results) { described_class.prepare_results(response_set) }
 
       it "returns Array" do
         expect(results).to be_instance_of(Array)
@@ -59,7 +59,7 @@ describe Billymad::Base do
       end
 
       it "returns Array with proper objects" do
-        expect(results.first).to be_instance_of(Billymad::Base)
+        expect(results.first).to be_instance_of(described_class)
       end
     end
 
@@ -67,14 +67,9 @@ describe Billymad::Base do
       let(:response_data) { { id: 1, something: 'A' } }
 
       it "returns resource object" do
-        expect(Billymad::Base.prepare_results(response_data)).to be_instance_of(Billymad::Base)
+        expect(described_class.prepare_results(response_data)).to be_instance_of(described_class)
       end
     end
   end
 
-  describe "#demodulize" do
-    it "extract correct class name from namespaced class" do
-      expect(described_class.demodulize("My::ProperClass")).to eq("ProperClass")
-    end
-  end
 end

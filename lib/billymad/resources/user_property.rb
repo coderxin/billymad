@@ -1,5 +1,5 @@
 module Billymad
-  class UserProperty < Base
+  class UserProperty < Resource::Base
     include Billymad::Operations::General
 
     mandatory_attributes_for :create, attributes: [ :name, :type ]

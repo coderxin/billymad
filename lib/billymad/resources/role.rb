@@ -1,5 +1,5 @@
 module Billymad
-  class Role < Base
+  class Role < Resource::Base
     include Billymad::Operations::General
   end
 end

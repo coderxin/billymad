@@ -1,5 +1,5 @@
 module Billymad
-  class InvoiceComment < Base
+  class InvoiceComment < Resource::Base
     include Billymad::Operations::All
     include Billymad::Operations::Find
     include Billymad::Operations::Create

@@ -1,5 +1,5 @@
 module Billymad
-  class ClientProperty < Base
+  class ClientProperty < Resource::Base
     include Billymad::Operations::General
 
     mandatory_attributes_for :create, attributes: [ :name, :type ]

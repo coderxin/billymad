@@ -1,5 +1,5 @@
 module Billymad
-  class ArticleTag < Base
+  class ArticleTag < Resource::Base
     include Billymad::Operations::General
   end
 end

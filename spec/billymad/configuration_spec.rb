@@ -16,12 +16,12 @@ describe Billymad::Configuration do
   it { should_not respond_to(:billomat_host) }
 
   describe "#api_url" do
-    it 'has to verify configuration' do
+    it 'is verifying configuration' do
       configuration.should_receive(:_verify_configuration)
       configuration.api_url
     end 
 
-    it 'has correct format' do
+    it 'uses correct url format' do
       configuration.billomat_id = 'my-id'
       configuration.api_key = 'something'
       configuration.secure = false
@@ -29,14 +29,14 @@ describe Billymad::Configuration do
       expect(configuration.api_url).to eq('http://my-id.billomat.net/api/')
     end
 
-    it 'has to raise exception when billomat ID is not set' do
+    it 'raises exception when billomat ID is not set' do
       configuration.billomat_id = nil
       expect{
         configuration.api_url
       }.to raise_error(Billymad::ConfigurationError)
     end 
 
-    it 'has to raise exception when Api key is not set' do
+    it 'raises exception when Api key is not set' do
       configuration.billomat_id = 'id'
       configuration.api_key = nil
       expect{
@@ -46,20 +46,21 @@ describe Billymad::Configuration do
   end
 
   describe "#billomat_host" do
-    it "has default billomat host address" do
+    it "holds default billomat host address" do
       expect(configuration.send(:billomat_host)).to eq('billomat.net')
     end
   end
 
   describe "#protocol" do
-    it 'is secure' do
+    it 'uses https protocol' do
       configuration.secure = true
       expect(configuration.send(:protocol)).to eq('https')
     end
 
-    it 'is not secure' do
+    it 'uses http protocol' do
       configuration.secure = false
       expect(configuration.send(:protocol)).to eq('http')
     end
   end
+
 end

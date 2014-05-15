@@ -1,5 +1,5 @@
 module Billymad
-  class Account < Base
+  class Account < Resource::Base
     def self.current
       response = Billymad::Request::Proxy.get(self, id: 'myself')
       prepare_results(response)

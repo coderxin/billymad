@@ -1,5 +1,5 @@
 module Billymad
-  class Invoice < Base
+  class Invoice < Resource::Base
     include Billymad::Operations::General
   
     mandatory_attributes_for :create, attributes: [ :client_id ]
