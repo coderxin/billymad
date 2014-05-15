@@ -131,13 +131,48 @@ Reload record from API:
 
 ### Mandatory parameters
 
-Some resources require mandatory parameters:
+Some resources require mandatory parameters: 
 
     Billymad::Contact.all
 
     # => Billymad::APIError: You must specify the mandatory parameter :client_id
 
 For futher details, please check [API documentation](http://www.billomat.com/en/api).
+
+### Method chaining
+
+Methods currently available via association chain: `.all`, `.create`.
+
+
+	client = Billymad::Client.all.last
+	
+	client.tags.create(name: "Books")
+	client.tags.create(name: "Games")
+	
+	client.tags
+	
+	# => [
+    	[0] #<Billymad::ClientTag:0x0102d87 @id=9092, @client_id="352837", @name="Books">,
+    	[1] #<Billymad::ClientTag:0x0102d87 @id=9093, @client_id="352837", @name="Games">
+	]
+	
+Same as `client.tags` but allows to pass extra parameters:
+	
+	client.tags.all(per_page: 1, page: 2)	
+	
+### Pagination
+
+To change default pagination settings you have to pass `page` attribute and `per_page`. 
+
+	Billymad::Client.all(per_page: 1, page: 2)
+	
+Default page size is `100` records.
+
+### Sorting
+
+To get sorted results from the API you can pass `order_by` attribute with the name of parameter and preferred sorting order.
+
+	Billymad::ClientTag.all(order_by: "name ASC, id DESC")
 
 ## More to come
 
