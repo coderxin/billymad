@@ -1,7 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Billymad::Configuration do
-
   let(:configuration) { Billymad::Configuration.new }
 
   it { should respond_to(:billomat_id) }
@@ -15,43 +14,43 @@ describe Billymad::Configuration do
   it { should_not respond_to(:billomat_url) }
   it { should_not respond_to(:billomat_host) }
 
-  describe "#api_url" do
+  describe '#api_url' do
     it 'is verifying configuration' do
-      configuration.should_receive(:_verify_configuration)
+      expect(configuration).to receive(:_verify_configuration)
       configuration.api_url
-    end 
+    end
 
     it 'uses correct url format' do
       configuration.billomat_id = 'my-id'
       configuration.api_key = 'something'
       configuration.secure = false
-      
+
       expect(configuration.api_url).to eq('http://my-id.billomat.net/api/')
     end
 
     it 'raises exception when billomat ID is not set' do
       configuration.billomat_id = nil
-      expect{
+      expect do
         configuration.api_url
-      }.to raise_error(Billymad::ConfigurationError)
-    end 
+      end.to raise_error(Billymad::ConfigurationError)
+    end
 
     it 'raises exception when Api key is not set' do
       configuration.billomat_id = 'id'
       configuration.api_key = nil
-      expect{
+      expect do
         configuration.api_url
-      }.to raise_error(Billymad::ConfigurationError)
+      end.to raise_error(Billymad::ConfigurationError)
     end
   end
 
-  describe "#billomat_host" do
-    it "holds default billomat host address" do
+  describe '#billomat_host' do
+    it 'holds default billomat host address' do
       expect(configuration.send(:billomat_host)).to eq('billomat.net')
     end
   end
 
-  describe "#protocol" do
+  describe '#protocol' do
     it 'uses https protocol' do
       configuration.secure = true
       expect(configuration.send(:protocol)).to eq('https')
@@ -62,5 +61,4 @@ describe Billymad::Configuration do
       expect(configuration.send(:protocol)).to eq('http')
     end
   end
-
 end
