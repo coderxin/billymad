@@ -1,7 +1,6 @@
 Billymad
 ========
-
-[![Build Status](https://travis-ci.org/coderxin/billymad.svg?branch=master)](https://travis-ci.org/coderxin/billymad)
+![Build](https://github.com/coderxin/billymad/actions/workflows/build.yml/badge.svg)
 [![GitHub version](https://badge.fury.io/gh/coderxin%2Fbillymad.svg)](http://badge.fury.io/gh/coderxin%2Fbillymad)
 [![Coverage Status](https://coveralls.io/repos/coderxin/billymad/badge.png?branch=master)](https://coveralls.io/r/coderxin/billymad?branch=master)
 
@@ -131,7 +130,7 @@ Reload record from API:
 
 ### Mandatory parameters
 
-Some resources require mandatory parameters: 
+Some resources require mandatory parameters:
 
     Billymad::Contact.all
 
@@ -145,27 +144,27 @@ Methods currently available via association chain: `.all`, `.create`.
 
 
 	client = Billymad::Client.all.last
-	
+
 	client.tags.create(name: "Books")
 	client.tags.create(name: "Games")
-	
+
 	client.tags
-	
+
 	# => [
     	[0] #<Billymad::ClientTag:0x0102d87 @id=9092, @client_id="352837", @name="Books">,
     	[1] #<Billymad::ClientTag:0x0102d87 @id=9093, @client_id="352837", @name="Games">
 	]
-	
+
 Same as `client.tags` but allows to pass extra parameters:
-	
-	client.tags.all(per_page: 1, page: 2)	
-	
+
+	client.tags.all(per_page: 1, page: 2)
+
 ### Pagination
 
-To change default pagination settings you have to pass `page` attribute and `per_page`. 
+To change default pagination settings you have to pass `page` attribute and `per_page`.
 
 	Billymad::Client.all(per_page: 1, page: 2)
-	
+
 Default page size is `100` records.
 
 ### Sorting
