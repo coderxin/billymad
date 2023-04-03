@@ -1,6 +1,6 @@
 Billymad
 ========
-![Build](https://github.com/coderxin/billymad/actions/workflows/build.yml/badge.svg)
+![Build](https://github.com/coderxin/billymad/actions/workflows/master.yml/badge.svg)
 [![GitHub version](https://badge.fury.io/gh/coderxin%2Fbillymad.svg)](http://badge.fury.io/gh/coderxin%2Fbillymad)
 [![Coverage Status](https://coveralls.io/repos/coderxin/billymad/badge.png?branch=master)](https://coveralls.io/r/coderxin/billymad?branch=master)
 
