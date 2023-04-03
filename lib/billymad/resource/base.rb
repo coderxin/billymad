@@ -2,8 +2,8 @@ module Billymad
   module Resource
     class Base
       include Association
+      include Utils
       extend Validations
-      extend Utils
 
       def initialize(attributes = {})
         set_attributes(attributes)
@@ -12,13 +12,14 @@ module Billymad
 
       def set_attributes(attributes)
         attributes.each_pair do |key, value|
-          self.class.send(:attr_accessor, key)
-          instance_variable_set("@#{key}", value)
+          sanitized_key = underscore(key)
+          self.class.send(:attr_accessor, sanitized_key)
+          instance_variable_set("@#{sanitized_key}", value)
         end
       end
 
       def convert_attributes
-        @id      = id.to_i if @id
+        @id = id.to_i if @id
         @created = Time.parse(created) if @created
       end
 
@@ -27,15 +28,14 @@ module Billymad
       end
 
       def attributes
-        self.instance_variables.inject({}) do |hash, variable| 
-          key = variable.to_s.gsub(/@/,"")
-          hash[key.to_sym] = self.send(key)
-          hash
+        instance_variables.each_with_object({}) do |variable, hash|
+          key = variable.to_s.gsub(/@/, '')
+          hash[key.to_sym] = send(key)
         end
       end
 
-    private
-      
+      private
+
       def resource_name
         @resource_name ||= self.class.resource_name
       end
@@ -45,9 +45,8 @@ module Billymad
       end
 
       class << self
-
         def resource_name
-          @resource_name ||= demodulize(self.name).dasherize
+          @resource_name ||= demodulize(name).dasherize
         end
 
         def plural_resource_name
@@ -56,13 +55,13 @@ module Billymad
 
         def prepare_results(response)
           if response.is_a? Array
-            response.inject([]) { |results, data| results << self.new(data) }
+            response.inject([]) { |results, data| results << new(data) }
           else
-            (response and !response.empty?) ? self.new(response) : nil
+            response && !response.empty? ? new(response) : nil
           end
         end
-
       end
     end
   end
 end
+
