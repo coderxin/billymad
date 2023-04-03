@@ -1,6 +1,3 @@
-require 'coveralls'
-Coveralls.wear!
-
 require 'billymad'
 
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
