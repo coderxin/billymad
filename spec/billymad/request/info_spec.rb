@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Billymad::Request::Info do
   let(:resource) { double(:resource, resource_name: 'client', plural_resource_name: 'clients') }
@@ -39,33 +39,34 @@ describe Billymad::Request::Info do
 
   describe '#parameters' do
     context 'without params specified' do
-      it "returns empty hash" do
+      it 'returns empty hash' do
         expect(subject.parameters).to eq({})
       end
     end
     context 'with params specified' do
       subject { described_class.new(resource, method: :get, params: { name: 'Sam' }) }
-      it "returns hash with parameters" do
-        expect(subject.parameters).to eq({ params: { name: "Sam" } })
+      it 'returns hash with parameters' do
+        expect(subject.parameters).to eq({ params: { name: 'Sam' } })
       end
-    end 
+    end
     context 'when request method is POST' do
       subject { described_class.new(resource, method: :post, params: { name: 'Sam' }) }
-      it "returns JSON string with parameters" do
-        expect(subject.parameters).to eq({ client: { name: 'Sam' }}.to_json)
+      it 'returns JSON string with parameters' do
+        expect(subject.parameters).to eq({ client: { name: 'Sam' } }.to_json)
       end
     end
     context 'when request method is PUT' do
       subject { described_class.new(resource, method: :put, params: { name: 'Bob' }) }
-      it "returns JSON string with parameters" do
-        expect(subject.parameters).to eq({ client: { name: 'Bob' }}.to_json)
+      it 'returns JSON string with parameters' do
+        expect(subject.parameters).to eq({ client: { name: 'Bob' } }.to_json)
       end
     end
     context 'when request method is WRONG' do
       subject { described_class.new(resource, method: :wrong, params: { name: 'Bob' }) }
-      it "returns empty hash without parameters" do
+      it 'returns empty hash without parameters' do
         expect(subject.parameters).to eq({})
       end
-    end      
+    end
   end
 end
+

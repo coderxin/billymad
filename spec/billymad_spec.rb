@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe Billymad do
-
-  describe "by default" do
+  describe 'by default' do
     it 'billomat id is unset' do
       expect(Billymad.configuration.billomat_id).to be_nil
     end
@@ -16,15 +15,15 @@ describe Billymad do
     end
 
     it 'http requests are made via SSL' do
-      expect(Billymad.configuration.secure).to be_true
+      expect(Billymad.configuration.secure).to be_truthy
     end
 
     it 'default logger is Logger' do
       expect(Billymad.configuration.logger).to be_instance_of(Logger)
     end
   end
-  
-  describe "configure via block" do
+
+  describe 'configure via block' do
     before(:all) do
       Billymad.configure do |config|
         config.billomat_id = 'id'
@@ -34,7 +33,7 @@ describe Billymad do
         config.logger      = FakeLogger.new
       end
     end
-    
+
     it 'allows to set billomat id' do
       expect(Billymad.configuration.billomat_id).to eq('id')
     end
@@ -48,7 +47,7 @@ describe Billymad do
     end
 
     it 'allows to do http requests without SSL' do
-      expect(Billymad.configuration.secure).to be_false
+      expect(Billymad.configuration.secure).to be_falsey
     end
 
     it 'allows to choose a logger' do

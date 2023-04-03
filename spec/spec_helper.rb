@@ -1,11 +1,10 @@
-require "coveralls"
+require 'coveralls'
 Coveralls.wear!
 
-require "billymad"
+require 'billymad'
 
-Dir["./spec/support/**/*.rb"].sort.each {|f| require f }
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 
 FakeLogger = Struct.new(:input) do
-  def info(message)
-  end
+  def info(message); end
 end
