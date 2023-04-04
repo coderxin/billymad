@@ -1,7 +1,6 @@
 module Billymad
   module Resource
     module Validations
-
       def mandatory_attributes_for(method, options = {})
         mandatory_attributes[method] = options.fetch(:attributes, [])
       end
@@ -12,10 +11,10 @@ module Billymad
         end
       end
 
-    private
+      private
 
       def valid?(attributes, attribute)
-        attributes.keys.map(&:to_sym).include?(attribute)        
+        attributes.keys.map(&:to_sym).include?(attribute)
       end
 
       def mandatory_attributes
@@ -23,9 +22,9 @@ module Billymad
       end
 
       def raise_exception(attribute)
-        raise Billymad::APIError.new("You must specify the mandatory parameter :#{attribute}")
+        raise Billymad::APIError, "You must specify the mandatory parameter :#{attribute}"
       end
-
     end
   end
 end
+
