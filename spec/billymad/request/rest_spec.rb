@@ -8,7 +8,7 @@ describe Billymad::Request::Rest do
            api_url: 'http://example.test',
            api_format: :json,
            api_key: 'key',
-           logger: FakeLogger.new(STDOUT))
+           logger: FakeLogger.new($stdout))
   end
 
   it { should respond_to(:call) }
@@ -82,3 +82,4 @@ describe Billymad::Request::Rest do
     end
   end
 end
+
