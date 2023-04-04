@@ -1,22 +1,20 @@
 module Billymad
   module Resource
     module Association
-
       def self.included(base)
         base.extend(ClassMethods)
       end
 
       def association_keys
-        { resource_key => self.id }
+        { resource_key => id }
       end
-   
+
       module ClassMethods
-        
         def association(name, options = {})
           define_association(name, options[:class_name])
         end
 
-      private
+        private
 
         def define_association(association_name, target_class)
           define_method association_name do
@@ -36,3 +34,4 @@ module Billymad
     end
   end
 end
+
