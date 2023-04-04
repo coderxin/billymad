@@ -1,30 +1,30 @@
-require "rest-client"
+require 'rest-client'
 
 module Billymad
   module Request
     class Rest
-
-      EXCEPTIONS = [ 
-        RestClient::ResourceNotFound, 
-        RestClient::Unauthorized, 
-        RestClient::Forbidden 
-      ]
+      EXCEPTIONS = [
+        RestClient::ResourceNotFound,
+        RestClient::Unauthorized,
+        RestClient::Forbidden
+      ].freeze
 
       class << self
-
         def call(method, url, params)
-          begin
-            api[url].send(method, params)
-          rescue *EXCEPTIONS => exception
-            log(exception, method, url, params)
-            nil
-          end
+          api[url].send(method, params)
+        rescue *EXCEPTIONS => e
+          log(e, method, url, params)
+          nil
         end
 
-      private
+        private
 
         def auth_headers
-          { 'Accept' => content_type, 'Content-Type' => content_type, 'X-BillomatApiKey' => config.api_key }
+          {
+            'Accept' => content_type,
+            'Content-Type' => content_type,
+            'X-BillomatApiKey' => config.api_key
+          }
         end
 
         def content_type
@@ -42,8 +42,8 @@ module Billymad
         def log(exception, method, url, params)
           config.logger.info("[#{method}] Resource: #{url} Params: #{params} Error: #{exception.message}")
         end
-
       end
     end
   end
 end
+
