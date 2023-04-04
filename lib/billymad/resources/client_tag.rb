@@ -5,6 +5,7 @@ module Billymad
     include Billymad::Operations::Create
     include Billymad::Operations::Destroy
 
-    mandatory_attributes_for :create, attributes: [ :client_id, :name ]
+    mandatory_attributes_for :create, attributes: %i[client_id name]
   end
 end
+

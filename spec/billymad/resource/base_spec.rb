@@ -71,3 +71,4 @@ describe Billymad::Resource::Base do
     end
   end
 end
+

@@ -4,3 +4,4 @@ module Billymad
     include Billymad::Operations::Update
   end
 end
+

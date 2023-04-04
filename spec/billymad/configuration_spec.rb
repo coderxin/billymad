@@ -62,3 +62,4 @@ describe Billymad::Configuration do
     end
   end
 end
+

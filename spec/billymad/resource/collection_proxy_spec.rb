@@ -39,3 +39,4 @@ describe Billymad::Resource::CollectionProxy do
     end
   end
 end
+

@@ -4,3 +4,4 @@ module Billymad
   class APIError < Error; end
   class AuthenticationError < Error; end
 end
+

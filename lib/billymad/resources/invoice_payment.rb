@@ -5,6 +5,7 @@ module Billymad
     include Billymad::Operations::Create
     include Billymad::Operations::Destroy
 
-    mandatory_attributes_for :create, attributes: [ :invoice_id, :amount ]
+    mandatory_attributes_for :create, attributes: %i[invoice_id amount]
   end
 end
+

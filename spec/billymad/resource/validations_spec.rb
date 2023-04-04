@@ -47,3 +47,4 @@ describe Billymad::Resource::Validations do
     end
   end
 end
+

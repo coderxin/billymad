@@ -12,3 +12,4 @@ shared_examples 'can be initialized' do
     end
   end
 end
+

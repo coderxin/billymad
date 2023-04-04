@@ -8,3 +8,4 @@ module Billymad
     association :contacts, class_name: Billymad::Contact
   end
 end
+

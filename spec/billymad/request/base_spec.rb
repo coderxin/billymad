@@ -33,3 +33,4 @@ describe Billymad::Request::Base do
     end
   end
 end
+

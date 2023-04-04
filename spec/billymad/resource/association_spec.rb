@@ -55,3 +55,4 @@ describe Billymad::Resource::Association do
     end
   end
 end
+
