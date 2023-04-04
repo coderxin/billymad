@@ -3,3 +3,4 @@ module Billymad
     include Billymad::Operations::General
   end
 end
+

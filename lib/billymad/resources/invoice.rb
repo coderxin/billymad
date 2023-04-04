@@ -1,25 +1,20 @@
 module Billymad
   class Invoice < Resource::Base
     include Billymad::Operations::General
-  
-    mandatory_attributes_for :create, attributes: [ :client_id ]
 
-    def complete
-    end
+    mandatory_attributes_for :create, attributes: [:client_id]
 
-    def pdf
-    end
+    def complete; end
 
-    def upload_signature(signature)
-    end
+    def pdf; end
 
-    def email
-    end
+    def upload_signature(signature); end
 
-    def cancel
-    end
+    def email; end
 
-    def uncancel
-    end
+    def cancel; end
+
+    def uncancel; end
   end
 end
+

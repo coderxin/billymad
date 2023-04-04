@@ -1,19 +1,17 @@
-require "logger"
+require 'logger'
 
-module Billymad  
+module Billymad
   class Configuration
+    BILLOMAT_HOST = 'billomat.net'.freeze
 
-    BILLOMAT_HOST = 'billomat.net'
-
-    attr_accessor :billomat_id, :api_key, :secure, :logger
-    attr_accessor :api_format
+    attr_accessor :billomat_id, :api_key, :secure, :logger, :api_format
 
     def initialize
       @billomat_id = nil
       @api_key = nil
       @secure = true
       @logger = default_logger
-      
+
       set_defaults
     end
 
@@ -22,7 +20,7 @@ module Billymad
       @api_url ||= billomat_url
     end
 
-  private
+    private
 
     attr_reader :billomat_host
 
@@ -32,15 +30,15 @@ module Billymad
     end
 
     def protocol
-      @protocol ||= @secure ? 'https' : 'http' 
+      @protocol ||= @secure ? 'https' : 'http'
     end
 
     def billomat_url
-      "#{protocol}://#{billomat_id.to_s}.#{billomat_host}/api/"
+      "#{protocol}://#{billomat_id}.#{billomat_host}/api/"
     end
 
     def default_logger
-      logger = Logger.new(STDOUT)
+      logger = Logger.new($stdout)
       logger.level = Logger::INFO
       logger
     end
@@ -51,12 +49,12 @@ module Billymad
     end
 
     def _verify_api_key
-      raise Billymad::ConfigurationError.new("You must specify an API key") if api_key.nil?
+      raise Billymad::ConfigurationError, 'You must specify an API key' if api_key.nil?
     end
 
     def _verify_billomat_id
-      raise Billymad::ConfigurationError.new("You must specify an Billomat ID") if billomat_id.nil?
+      raise Billymad::ConfigurationError, 'You must specify an Billomat ID' if billomat_id.nil?
     end
-
   end
 end
+

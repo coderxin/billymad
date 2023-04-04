@@ -19,3 +19,4 @@ describe Billymad::Resource::Utils do
     end
   end
 end
+

@@ -53,3 +53,4 @@ describe Billymad::Request::Proxy do
     end
   end
 end
+

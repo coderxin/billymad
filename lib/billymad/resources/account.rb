@@ -5,12 +5,11 @@ module Billymad
       prepare_results(response)
     end
 
-  private
-
     # Since there is no resource named "Account"
-    # we have to override it explicitly 
+    # we have to override it explicitly
     def self.resource_name
       'client'
     end
   end
 end
+

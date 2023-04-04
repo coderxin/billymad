@@ -8,8 +8,8 @@ module Billymad
       module ClassMethods
         def demodulize(path)
           path = path.to_s
-          if i = path.rindex('::')
-            path[(i + 2)..-1]
+          if (i = path.rindex('::'))
+            path[(i + 2)..]
           else
             path
           end

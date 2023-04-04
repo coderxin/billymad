@@ -1,7 +1,7 @@
 module Billymad
   module Operations
     module General
-      def self.included(base) 
+      def self.included(base)
         base.send :include, Billymad::Operations::All
         base.send :include, Billymad::Operations::Find
         base.send :include, Billymad::Operations::Create
@@ -11,3 +11,4 @@ module Billymad
     end
   end
 end
+
