@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'json'
 
 describe Billymad::Request::Base do
   let(:info) do
