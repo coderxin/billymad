@@ -1,49 +1,53 @@
+require 'json'
+
 module Billymad
   module Request
     class Info
-      attr_reader :method, :resource_name, :plural_resource_name
+      attr_reader :resource_name, :plural_resource_name, :method
 
       def initialize(resource, options = {})
-        @resource_name        = resource.resource_name
+        @resource_name = resource.resource_name
         @plural_resource_name = resource.plural_resource_name
-        
+
         @resource_id = options[:id]
-        @method      = options[:method]
-        @parameters  = options.fetch(:params, {})
+        @method = options[:method]
+        @params = options.fetch(:params, {})
       end
 
       def url
         if single_record?
-          "#{@plural_resource_name}/#{@resource_id}"
+          "#{plural_resource_name}/#{resource_id}"
         else
-          @plural_resource_name
+          plural_resource_name
         end
       end
 
       def parameters
-        if @method == :get
-          get_params_format
-        elsif [:post, :put].include?(@method)
+        if method == :get
+          formatted_params
+        elsif %i[post put].include?(method)
           post_and_put_params_format
-        else 
+        else
           {}
         end
       end
 
-    private
+      private
+
+      attr_reader :params, :resource_id
 
       def single_record?
-        @resource_id
+        resource_id
       end
 
-      def get_params_format
-        @parameters.empty? ? {} : { params: @parameters }
+      def formatted_params
+        params.empty? ? {} : { params: params }
       end
 
       def post_and_put_params_format
-        { @resource_name => @parameters }.to_json
+        { resource_name => params }.to_json
       end
-
     end
   end
 end
+
