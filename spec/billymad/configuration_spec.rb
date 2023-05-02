@@ -16,7 +16,7 @@ describe Billymad::Configuration do
 
   describe '#api_url' do
     it 'is verifying configuration' do
-      expect(configuration).to receive(:_verify_configuration)
+      expect(configuration).to receive(:verify_configuration)
       configuration.api_url
     end
 

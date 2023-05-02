@@ -16,7 +16,7 @@ module Billymad
     end
 
     def api_url
-      _verify_configuration
+      verify_configuration
       @api_url ||= billomat_url
     end
 
@@ -25,12 +25,12 @@ module Billymad
     attr_reader :billomat_host
 
     def set_defaults
-      @api_format    = :json
+      @api_format = :json
       @billomat_host = BILLOMAT_HOST
     end
 
     def protocol
-      @protocol ||= @secure ? 'https' : 'http'
+      @protocol ||= secure ? 'https' : 'http'
     end
 
     def billomat_url
@@ -43,16 +43,16 @@ module Billymad
       logger
     end
 
-    def _verify_configuration
-      _verify_billomat_id
-      _verify_api_key
+    def verify_configuration
+      verify_billomat_id
+      verify_api_key
     end
 
-    def _verify_api_key
+    def verify_api_key
       raise Billymad::ConfigurationError, 'You must specify an API key' if api_key.nil?
     end
 
-    def _verify_billomat_id
+    def verify_billomat_id
       raise Billymad::ConfigurationError, 'You must specify an Billomat ID' if billomat_id.nil?
     end
   end

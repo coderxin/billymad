@@ -5,6 +5,8 @@ module Billymad
       include Utils
       extend Validations
 
+      attr_reader :id, :created
+
       def initialize(attributes = {})
         set_attributes(attributes)
         convert_attributes
@@ -19,8 +21,8 @@ module Billymad
       end
 
       def convert_attributes
-        @id = id.to_i if @id
-        @created = Time.parse(created) if @created
+        @id = id.to_i if id
+        @created = Time.parse(created) if created
       end
 
       def prepare_results(response)
