@@ -1,5 +1,5 @@
-Billymad
-========
+# Billymad
+
 ![Build](https://github.com/coderxin/billymad/actions/workflows/master.yml/badge.svg)
 [![GitHub version](https://badge.fury.io/gh/coderxin%2Fbillymad.svg)](http://badge.fury.io/gh/coderxin%2Fbillymad)
 [![Coverage Status](https://coveralls.io/repos/coderxin/billymad/badge.png?branch=master)](https://coveralls.io/r/coderxin/billymad?branch=master)
@@ -78,8 +78,6 @@ Since Gem is in development, there are few resources (actually ###) covered in t
     - `Billymad::UserPropertyValue`
 
 ## Usage
-
-===============
 
 ### Example: Client resource
 
